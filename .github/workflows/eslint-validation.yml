@@ -10,7 +10,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Use Node
+      - name: Setup Node v20
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -18,3 +18,15 @@ jobs:
       - name: Install package.json dependecies
         run: |
           npm install
+          npx eslint .
+      
+      - name: Run ESLint
+        run: npx eslint .
+        continue-on-error: true
+
+      - name: Check ESLint results and fail if errors found
+        run: |
+          if [$? -ne 0 ]; then
+            exit 1
+          fi
+        
