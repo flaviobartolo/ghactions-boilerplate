@@ -18,15 +18,6 @@ jobs:
       - name: Install package.json dependecies
         run: |
           npm install
-          npx eslint .
       
       - name: Run ESLint
         run: npx eslint .
-        continue-on-error: true
-
-      - name: Check ESLint results and fail if errors found
-        run: |
-          if [$? -ne 0 ]; then
-            exit 1
-          fi
-        
