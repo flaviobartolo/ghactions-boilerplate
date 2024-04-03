@@ -1,0 +1,23 @@
+name: ESLint Validation
+
+on: [push]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node v20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      
+      - name: Install package.json dependecies
+        run: |
+          npm install
+      
+      - name: Run ESLint
+        run: npx eslint .
